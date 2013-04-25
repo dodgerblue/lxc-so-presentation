@@ -1,4 +1,5 @@
-\subsection{Demo schematics}
+\section{Usage}
+\subsection{Schematics}
 
 \begin{frame}[fragile]
 \frametitle{Sample Process Hierarchy}
@@ -114,4 +115,51 @@ init(1)-+-dnsmasq(2162)
         `-udevd(962)-+-udevd(1189)
                      `-udevd(1190)
 \end{alltt}\normalsize
+\end{frame}
+
+\subsection{Demo}
+
+\begin{frame}{Demo}
+\begin{enumerate}
+\item start 2 containers
+\item check PIDs
+\item assign them a single core on the host
+\item balance CPU usage 25\% - 75\%
+\end{enumerate}
+\end{frame}
+
+\subsection{Benchmarks}
+
+\begin{frame}{System Performance}
+	\begin{columns}[T]
+		\begin{column}{.5\textwidth}
+			\begin{block}{\centering \textbf{CPU performance} \\ Linpack}
+				\includegraphics[width=\textwidth]{img/cpu_perf_linpack.png}
+			\end{block}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\begin{block}{\centering \textbf{Mem throughput} \\ Stream}
+				\includegraphics[width=\textwidth]{img/mem_throughput_stream.png}
+			\end{block}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Networking Performance}
+	\begin{columns}[T]
+		\begin{column}{.5\textwidth}
+			\begin{block}{\centering \textbf{Bandwidth} \\ NetPIPE}
+				\includegraphics[width=\textwidth]{img/net_bandwidth_netpipe.png}
+			\end{block}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\begin{block}{\centering \textbf{Latency} \\ NetPIPE}
+				\includegraphics[width=\textwidth]{img/net_latency_netpipe.png}
+			\end{block}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Isolation}
+	\includegraphics[width=\textwidth]{img/isolation_benchmark_suite.png}
 \end{frame}

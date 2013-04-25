@@ -1,0 +1,28 @@
+NOTES:
+
+General TOC:
+- Some high-level presentation of the concepts
+	- processes
+	- filesystems
+	- virtualization
+	- OS level-virtualization
+- The concrete technical presentation
+- General Use-Cases
+- Freescale Use-Cases
+
+Concrete technical presentation will focus on:
+- the DEMO
+- the graphical presentation of the DEMO
+- the benchmarking results
+
+SO Concepts:
+- processes
+- filesystems
+
+Freescale:
+
+
+DEMO:
+- start 3 containers - and make them all run on one processor - assuming you have a multicore host
+- give them 50% - 25% - 25% CPU - make them all run intensive processing
+

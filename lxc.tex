@@ -21,9 +21,13 @@
 
 \newcommand{\colorwrevert}[2]{\color{#1}#2\color{Black}}
 
+\usepackage{caption3} % load caption package kernel first
+\DeclareCaptionOption{parskip}[]{} % disable "parskip" caption option
+\usepackage[small]{caption}
+
 \mode<presentation>
 { 
-	\usetheme{Singapore} 
+	\usetheme{boxes} 
 	\usecolortheme{seagull}
 	\usefonttheme{serif}
 }
@@ -36,10 +40,11 @@
 	breakatwhitespace=true
 }
 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/back.png}}
 
-\title{Slides}
-\subtitle{with subtitle}
-\author{Bogdan Purcareata}
+\title{LinuX Containers}
+% \subtitle{an overall approach}
+\author{Bogdan Purc\u{a}rea\c{t}\u{a}}
 
 \begin{document}
 
@@ -49,88 +54,28 @@
 
 \frame{\tableofcontents}
 
-\section{Why?}
+\input{src/concepts}
 
-\begin{frame}{IT trends}
-\begin{itemize}
-\item more resources
-\begin{itemize}
-\item high performance technology available at lower costs
-\item software optimizations for resource usage
-\end{itemize}
-\item more users
-\begin{itemize}
-\item devices are everywhere
-\item shared access
-\end{itemize}
-\item data consolidation
-\begin{itemize}
-\item rise of data centers
-\item cloud computing
-\item data belonging to different accounts in the same place
-\end{itemize}
-\item increased flexibility
-\begin{itemize}
-\item easier to access
-\item easier to configure
-\item easier to use
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Embedded World}
-\begin{itemize}
-\item Networking
-\begin{itemize}
-\item traffic belonging to different departments on the same device
-\item QoS policy for each container
-\end{itemize}
-\item Smartphones
-\begin{itemize}
-\item separate RTOS (Real Time OS) from HLOS (High Level OS)
-\item run legacy applications
-\item separate account privileges
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\section{What?}
-
-\subsection{Virtualization}
-
-\subsection{LinuX Containers}
-
-\section{How?}
-
-\subsection{SO Concepts}
-
-\subsection{Control Groups}
-
-\subsection{Namespaces}
-
-\begin{frame}{Network}
-\begin{itemize}
-\item device delegation - move one interface to another namespace
-\item create virtual device inside that namespace
-\begin{itemize}
-\item veth - virtual ethernet tunnel
-\item vlan
-\begin{itemize}
-\item 802.1Q - dedicated VLAD ID in packet header
-\item MAC VLAN - uses VLAN device MAC as ID
-\end{itemize}
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{References}
-\begin{itemize}
-\item why network namespace sucks and how to make it suck faster
-\item Performance Evaluation of Container-based Virtualization for High Performance Computing Environments
-\end{itemize}
-\end{frame}
+\input{src/containers}
 
 \input{src/demo}
 
+\input{src/relevance}
+
+\section{QA}
+
+\begin{frame}{References}
+\begin{itemize}
+\item OpenVZ's: Why does the Network Namespace Suck and How to Make It Suck Faster?
+\item IEEE: Performance Evaluation of Container-based Virtualization for High Performance Computing Environments
+\item \url{http://www.pcgameshardware.com/screenshots/250x375/2009/05/Virtual_Windows_XP_Logo.png}
+\item \url{http://2.bp.blogspot.com/-47sakFH6uSw/UXgrhNqYF8I/AAAAAAAAHzQ/0W8zFVgR--w/s1600/lxc.png}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Thank you!}
+\centering
+Questions?
+\end{frame}
 
 \end{document}

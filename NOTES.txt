@@ -16,9 +16,11 @@ Concrete technical presentation will focus on:
 - the DEMO
 - the graphical presentation of the DEMO
 - the benchmarking results
+TOTAL: 10 pages
 
 
 DEMO:
 - start 2 containers - and make them all run on one processor - assuming you have a multicore host
 - give them 75% - 25% CPU - make them all run intensive processing
 
+http://www.linuxadvocates.com/2013/04/linux-containers-and-why-they-matter.html

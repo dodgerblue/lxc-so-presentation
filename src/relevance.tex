@@ -1,0 +1,67 @@
+\section{Relevance}
+
+\subsection{Spread}
+
+\begin{frame}{Popularity}
+	\begin{itemize}
+	\item running on:
+		\begin{itemize}
+		\item major distros: Fedora, Debian, Ubuntu, ...
+		\item Android
+		\item virtually any system with Linux >= 2.6.26
+		\end{itemize}
+	\item integrated with high(er) level tools:
+		\begin{itemize}
+		\item \url{docker.io} - The Linux Container Runtime
+		\item \url{libvirt.org} - The Virtualization API
+		\item \url{criu.org} - Checkpoint-Restart in Userspace
+		\end{itemize}
+	\item maintained by both kernel and userspace developers
+	\end{itemize}
+\end{frame}
+
+\subsection{Use Cases}
+
+\begin{frame}{Use Cases}
+	\begin{itemize}
+	\item general:
+		\begin{itemize}
+		\item server replication
+		\item application sandboxing
+		\item legacy software support
+		\item live migration
+		\item GPL insulation
+		\end{itemize}
+	\item embedded (networking, smartphones):
+		\begin{itemize}
+		\item separate traffic from different departments
+		\item separate QoS policies
+		\item run RTOS and HLOS at the same time
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Freescale USDPAA in Containers}
+	\begin{itemize}
+	\item DPAA - DataPath Acceleration Architecture
+		\begin{itemize}
+		\item HW architecture providing advanced networking capabilities
+		\item present in dedicated networking equipment
+		\item traffic shaping, package accelerators, cryptography engine
+		\end{itemize}
+	\item USDPAA - User Space DPAA
+		\begin{itemize}
+		\item userspace drivers based on the uio framework
+		\item increased flexibility in application development
+		\item reduced risk in bugging in kernel
+		\item better error handling and system protection
+		\item performance overhead
+		\end{itemize}
+	\item multiple USDPAA instances in containers
+		\begin{itemize}
+		\item improved isolation
+		\item additional protection layer
+		\item finer resource tuning
+		\end{itemize}
+	\end{itemize}
+\end{frame}

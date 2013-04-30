@@ -1,28 +1,26 @@
 \section{LinuX Containers}
 
-\begin{frame}{LinuX Containers Overview}
+\begin{frame}{LinuX Containers}
 	\begin{columns}[T]
-		\begin{column}{.5\textwidth}
+		\begin{column}{.6\textwidth}
 			\begin{itemize}
-			\item Features:
+			\item a.k.a. LXC:
 				\begin{itemize}
-				\item mainline kernel support
-				\item application vs. system containers
-				\item active development
+				\item Mature technology implementation
+				\item Mainline kernel support
+				\item Application vs. System
+				\item Active development
 				\end{itemize}
 			\item Components:
 				\begin{itemize}
-				\item \textit{kernel features}
-				\item \textit{userspace tools}
-					\begin{itemize} \item binaries, scripts \end{itemize}
-				\item \textit{configuration files}
-					\begin{itemize} \item container-host interface \end{itemize}
-				\item \textit{template files}
-					\begin{itemize} \item container applications \end{itemize}
+				\item \textit{Kernel features}
+				\item \textit{Userspace tools}
+				\item \textit{Configuration files}
+				\item \textit{Template files}
 				\end{itemize}
 			\end{itemize}
 		\end{column}
-		\begin{column}{.5\textwidth}
+		\begin{column}{.4\textwidth}
 			\begin{figure}[ht]
 				\centering
 				\includegraphics[width=\textwidth]{img/containers.png}
@@ -32,28 +30,29 @@
 \end{frame}
 
 \begin{frame}{Kernel Support}
-	\begin{columns}[T]
-		\begin{column}{.5\textwidth}
+	\begin{columns}[C]
+		\begin{column}{.6\textwidth}
 			\begin{itemize}
+			\setlength{\itemsep}{50pt}
 			\item Namespaces:
 				\begin{itemize}
-				\item wrap system resources in an abstraction
-				\item processes see the resource as their own
-				\item isolation between processss in different namespaces
+				\item Abstract resources
+				\item Processes see the resource as their own
+				\item Isolation between namespaces
 				\end{itemize}
 			\item Control Groups
 				\begin{itemize}
-				\item resource management among processes
-				\item hierarchical support
-				\item interaction with resource responsible structures:
+				\item Resource management among processes
+				\item Hierarchical support
+				\item Interaction with resource responsible structures:
 					\begin{itemize}
-					\item the scheduler
-					\item the pager
+					\item Scheduler
+					\item Pager
 					\end{itemize}
 				\end{itemize}
 			\end{itemize}	
 		\end{column}
-		\begin{column}{.5\textwidth}
+		\begin{column}{.4\textwidth}
 			\begin{figure}[ht]
 				\centering
 				\includegraphics[scale=0.2]{img/namespaces.png}

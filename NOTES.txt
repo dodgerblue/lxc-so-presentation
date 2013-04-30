@@ -10,7 +10,6 @@ General TOC:
 - General Use-Cases
 - Freescale Use-Cases
 	- some details about Freescale processors and what they are running
-	- 
 
 Concrete technical presentation will focus on:
 - the DEMO
@@ -18,6 +17,24 @@ Concrete technical presentation will focus on:
 - the benchmarking results
 TOTAL: 10 pages
 
+Improved security
+- increased uptime
+- fast recovery
+- data replication
+Downside:
+- lower performance
+- app partial isolation
+
+Barbecue analogy:
+- barbecue - host (machine)
+- people - users
+- fry meat - use services
+- heat up the whole barbecue just to fry a small piece of meat
+- sharing the barbecue - smell mixing, meat stealing
+- CPU - ember temperature
+- memeory - surface
+- peripherals - side placement for prepared meat?
+- I/O - raw meat in, fried meat out
 
 DEMO:
 - start 2 containers - and make them all run on one processor - assuming you have a multicore host

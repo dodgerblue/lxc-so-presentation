@@ -36,6 +36,9 @@ Barbecue analogy:
 - peripherals - side placement for prepared meat?
 - I/O - raw meat in, fried meat out
 
+Poza cu cgroups - exemplu cu memoria
+- graf pe tabla - insista ca graful nu se refera la procese, ci la partitionarea unei resurse
+
 DEMO:
 - start 2 containers - and make them all run on one processor - assuming you have a multicore host
 - give them 75% - 25% CPU - make them all run intensive processing

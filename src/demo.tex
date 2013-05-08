@@ -80,7 +80,7 @@ init(1)-+-dnsmasq(2162)
         |                   \colorbox{LightGreen}{              |-sh(2971)\colorwrevert{Green}{(6)}      }
         |                   \colorbox{LightGreen}{              `-syslogd(2969)\colorwrevert{Green}{(4)} }
         |                   \colorwrevert{Green}{PID Namespace 1}
-        |                   \colorwrevert{Red}{root: /var/lib/lxc/foo1/rootfs/}
+        |                   \colorwrevert{Red}{root: /var/lib/lxc/foo2/rootfs/}
         |-lxc-start(2974)---\colorbox{LightRed}{init(2976)\colorwrevert{Red}{(1)}-+-init(2982)\colorwrevert{Red}{(7)}    }
         |                   \colorbox{LightRed}{              |-sh(2981)\colorwrevert{Red}{(6)}      }
         |                   \colorbox{LightRed}{              `-syslogd(2979)\colorwrevert{Red}{(4)} }
@@ -103,7 +103,7 @@ init(1)-+-dnsmasq(2162)
   |     |       \colorwrevert{Green}{25\%}         \colorbox{LightGreen}{              |-sh(2971)\colorwrevert{Green}{(6)}      }
   |     |                   \colorbox{LightGreen}{              `-syslogd(2969)\colorwrevert{Green}{(4)} }
   |     |                   \colorwrevert{Green}{PID Namespace 1}
-  |     |                   \colorwrevert{Red}{root: /var/lib/lxc/foo1/rootfs/}
+  |     |                   \colorwrevert{Red}{root: /var/lib/lxc/foo2/rootfs/}
 1 core  |-lxc-start(2974)---\colorbox{LightRed}{init(2976)\colorwrevert{Red}{(1)}-+-init(2982)\colorwrevert{Red}{(7)}    }
   |     |       \colorwrevert{Red}{75\%}         \colorbox{LightRed}{              |-sh(2981)\colorwrevert{Red}{(6)}      }
   |     |                   \colorbox{LightRed}{              `-syslogd(2979)\colorwrevert{Red}{(4)} }

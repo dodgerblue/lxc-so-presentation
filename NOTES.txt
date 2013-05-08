@@ -44,3 +44,80 @@ DEMO:
 - give them 75% - 25% CPU - make them all run intensive processing
 
 http://www.linuxadvocates.com/2013/04/linux-containers-and-why-they-matter.html
+
+Introducere - slide-ul cu titlu
+- salut, eu sunt Bogdan, masterand la SRIC - Securitatea Retelelor Informatice Complexe, anul 1
+- angajat Freescale responsabil cu tehnologia de virtualizare de containere LXC - sincronizare upstream, definire feature-uri noi, integrare pe platformele Freescale, studiu use cases
+- va voi vorbi despre containere ca si tenologie de virtualizare la nivelul sistemului de operare
+Cuprinsul
+	- cateva notiuni recapitulative
+	- prezentarea tehnologiei - concepte, demo, teste de benchmarking
+	- prezentarea relevantei acestora - in ceea ce priveste popularitatea, la ce sunt folosite, etc.
+Incurajez un dialog - evident o sa imi fie si mie mai usor sa imi dau seama de tonul pe care ar trebui sa vorbesc
+- cati dintre voi stiati Linux inainte de facultate?
+- cati dintre voi sunteti pasionati de sisteme de operare?
+- cati dintre voi sunteti familiari cu conceptul de virtualizare?
+- cati dintre voi sunteti familiari cu conceptul de virtualizare la nivelul sistemului de operare?
+
+IT trends - prezentate foarte in general, notiuni de bun simt
+- in principal avem hardware cu mai mult potential, mai multi useri
+- se doreste consolidarea informatiei - minimizarea numarului de masini fizice independente, unificarea lor in chestii mai solide
+- politici de acces diferentiat - controlul trebuie sa fie cat mai precis si in momentul in care exista sute de useri care acceseaza acelasi serviciu, vrem cat mai multa flexibilitate in acces
+- vrem si flexibilitate - pentru ca pana la urma sistemul va fi handle-uit tot de oameni, si nu vrem sa le facem un training special sau sa piarda zile intregi pana sa configureze o masina
+- in acelasi timp vrem sa pastram un nivel de uzabilitate facil, dar sa oferim posiibilitatea unor scenarii de configuratie cat mai variate si mai exotice
+
+O sa facem acum o recapitulare scurta a unor notiuni de baza ale sistemelor de operare:
+- resursele principale sunt procesorul si memoria
+- pe langa acestea sunt diponibile o serie de periferice - sistemul de I/O - care sunt abstractizate sitemului de operare prin asa numitele sisteme de fisiere
+	- asa cum in Unix orice este un fisier, gruparea logica a resurselor de acelasi timp si expunerea lor utilizatorului se face prin sisteme de fisiere
+- de ce se ocupa scheduler-ul? - manage-uiteste procesele existente la un moment dat intr-un sistem, merge pe baza de niste cozi, etc.
+- de ce se ocupa pager-ul? - aloca pagini fizice paginilor de memorie virtuala, bla bla bla
+- KERNEL-ul - se ocupa de hardware-ul suport prin intemediul driverelor - si expune functionalitatile acestuia sub forma de capabilitati sistemului de operare - adica proceselor
+	- memoria este adusa de la stadiul de chip la stadiul de spatiu de adresa fizic unde se poate citi / scrie
+	- procesorul este adusa de la stadiul de chip la stadiul de sistem care face calcule si interactioneaza cu magistralele etc.
+	- kernelul mentine varii structuri pentru management-ul corect al acestor resurse - nu o sa dea toata memoria unui singur proces, nu o sa lase sa se execute un singur proces, diverse prioritati, limitari, etc.
+	
+Virtualizarea reprezinta o modalitate de partitionare a unei masini fizice in mai multe masini virtuale
+- constituie o forma de simulare si in functie de modul de implementare, poate sa fie simulare hardware, software sau amandoua
+- o masina virtuala reprezinta un sistem de calcul abstract, o implementare software a suportului hardware prezentat aplicatiilor
+- masinile virtuale sunt autonome - beneficiaza de un management propriu, independent de cel al masinii fizice pe care sunt hostate
+- masinile virtuale folosesc eficient resursele - doar cat au nevoie, ele sunt create cu un anumit scop, sa ruleze anumite aplicatii si primesc resurse doar cat sa ruleze acele aplicatii
+Avantajele tin in principal de folosirea mai eficienta a resurselor si de diminuarea costurilor
+- resursele sunt mai bine folosite in sensul ca masinile vor avea totusi capabilitati mari, insa e posibil ca scopul lor sa fie sa ruleze o singura aplicatie, not that time consuming - in felul acesta, in loc sa dam unui singur proces toate resursele masinii fizice, putem crea o masina virtuala cu un subset de capabilitati care sa ruleze acest proces, si care in acelasi timp sa pastreze loc si pentru alte masini virtuale sa ruleze pe acelasi host
+- in felul acesta se diminueaza si consturile de executie, intrucat prin cresterea numarului de masini virtuale, scade numarul de masini fizice
+- securitatea tine mai ales de capacitatea de recuperare din eroare, de replicare a functionalitatii si de downtime redus - o masina virtuala e mai usor de repornit decat una fizica
+- problemele principale tin in principal de management-ul resurselor si de izolarea lor. alte probleme relevante tin de costurile de performanta, intrucat o masina virtuala nu o sa ruleze aproape niciodata la viteza unei masini fizice, si aplicabilitatea - ce sisteme de operare pot rula intr-o masina virtuala
+
+Virtualizarea la nivelul sistemului de operare:
+- practic un singur host fizic + kernel si mai multe instante ale sistemului de operare
+- o instanta a sistemului de operare este alcatuita dintr-un rootfilesystem - adica acel / care este montat cand se porneste sistemul fizic - si o serie de bibilioteci si binare
+- o instanta a sistemului de operare poate fi considerata o ierarhie de procese in executie, iar virtualizarea la nivelul sistemului de operare reprezinta partitionarea acestui arbore de procese in mai multi subarbori autonomi
+
+LinuX Containers - ca pachet - poate fi numita o implementare "matura" a virtualizarii la nivelul sistemului de operare nu din prisma maturitatii pachetului in sine, ci din prisma maturitatii tehnologiei
+- prima incercare de izolare la nivelul OS a fost cu chroot - in 1982 - si intre timp au mai fost niste implementari de containere - dar toate aveau un kernel propriu
+- aceasta implementare de linux containers are suport nativ in kernel
+- containerele pot fi folosite in 2 scenariiL
+	- fie pentru rularea unei singure aplicatii intr-un context izolat - cum ar fi un shell, sau un server de ssh, etc.
+	- fie pentru a rula instante de sistem de operare complete - un init si fii sai, la care utilizatorii se pot conecta prin console
+- tehnologia este alcatuita din mai multe componente:
+	- feature-uri kernel - exact asa cum am spus, din moment ce kernelul este cel care se ocupa de management-ul resurselor, are nevoie de anumite module care se ocupa de partitionare
+	- tool-uri userspace - acestea pot fi binare sau script-uri care ofera acces la feature-urile din kernel intr-o maniera coerenta
+	- fisiere de configurare - care configureaza aspectul exterior al unui container - ce sisteme de fisiere va avea montate, de interfete de retea ii vor fi asignate, diverse setari de cgroups
+	- fisiere template - ce aplicatii vor fi in container - in special distributia - putem face un container care sa ruleze Debian pe o masina Fedora, ceea ce e destul de nice
+	
+In ceea ce priveste suportul din kernel, voi prezenta cele doua componente principale - control groups si namespaces - control groups se ocupa de managementul resurselor, namespaces de izolare
+- namespaces e o forma de asbtractizare a resurselor e.g. PID-uri - intr-un sistem fizic putem avea oricate namespaces, si fiecare namespace va avea un singur PID 1 - in imaginea respectiva, toate procesele formeaza o singura ierarhie pe host, insa acele globuri reprezinta faptul ca ele fac parte si din alte namespace-uri. O resursa dintr-un namespace nu este vizibila intr-un alt namespace. Abstractizarea si faptul ca procesele trebuie sa aiba PID unic doar in cadrul unui namespace face posibil checkpoint-restart-ul ierarhiei de procese, live migration, etc.
+- control groups se ocupa de management-ul resurselor si se bazeaza pe niste limite impuse structurilor care manage-uiesc resursele sistemului, cum ar fi pager-ul si scheduler-ul
+- exemplul cu memoria - faptul ca interactiunea se face printr-un sistem de fisiere virtual dedicat, similar cu /proc
+
+Demo:
+- pornim de la o ierarhie de procese de pe host - procesele lxc-start sunt cele care au pornit containerele pe host - se observa ca un container seamana foarte mult cu un sistem de operare de pe host - adica are init-ul lui si alte cateva procese
+- procesele din containere, intrucat au fost pornite in namespace-uri separate pentru PID, mai primesc cate un PID pentru fiecare namespace in care sunt. Astfel, un proces are cate un PID distinct pentru fiecare namespace in care rezida. Dupa cum se observa, exista 3 procese init cu pid-ul 1, cate unul pentru fiecare namespace. Faptul ca procesele din container sunt vizibile pe host este un lucru specific namespace-ului PID - la alte namespace-uri, cum ar fi cel de network, o interfata poate exista doar intr-un singur namespace
+- totodata rootfs-ul celor doua containere difera intrucat fiecare vede / in alta parte pe host
+- de asemenea, prin intermediul cgroups se poate partitiona timpul pe CPU astfel incat ambele containere sa partajeze un singur core, cu impartire diferita a timpului pe procesor
+
+Performanta - izolare:
+- scenariul a fost urmatorului - se pornesc 2 sisteme guest - masini virtuale. Mai intai, intr-unul din guest se ruleaza o aplicatie de test - LU - in celalalt nu se ruleaza nimic, si se masoara performanta. Apoi, intr-unul din guesti se ruleaza un test de stres - unul din cele mentionate in tabel - fie el de memorie, CPU, stres pe disc, etc. - iar in celalalt se ruleaza aceeasi aplicatie LU. Se masoara degradarea fata de performanta de referinta obtinuta cand unul din guesti era liber.
+- se observa ca nu exista impact in cazul in care se streseaza CPU, datorita implementarii bune a separarii afinitatii pe procesor.
+- in ceea ce priveste celelalte resurse, se poate presupune ca degradarea este datorata kernelului partajat care face fata tot mai greu apelurilor de sistem care vin din masina virtuala stresata.
+- in ceea ce priveste memoria, controllerul din cgroup, la momentul rularii acestui test, se ocupa doar de memoria din userspace - nu si de cea din kernel. De atunci s-au mai realizat dezvoltari sub acest aspect.
